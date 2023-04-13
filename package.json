@@ -1,0 +1,19 @@
+{
+  "name": "finalmongodbmongoose",
+  "version": "1.0.0",
+  "description": "mongoose is a javascrript library used to runtime javascrript environment node js and db mongodb connection.\r mongodb is collectionstyped scema based relational database used with javascrript runtime environment nodejs.\r don't use mongodb compass or\r don't run cmd commands mongod \r don't connect and externaal connection mongodb.\r if only defined collection name collections don't created but db connected.\r if connect db and create collecion during connecting to db create schema also.\r mongodb-mongoose D://db/mongodb-mongoose\r must servic enable in the services from services.msc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "express": "^4.18.2",
+    "mongoose": "^7.0.3",
+    "mongoose-delete": "^0.5.4",
+    "mongoose-softdelete": "^1.2.0"
+  }
+}
