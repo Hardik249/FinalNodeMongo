@@ -8,22 +8,37 @@ exports.update = async (req, res) => {
         // console.log(User);
         const password = req.body.password;
 		const saltRounds = 10;
-        const user = await User.findByIdAndUpdate({_id: req.params.slug}).exec();
         const hashPass = await bcrypt.hash(password, saltRounds);
-        const users = new User({
-            username: req.body.username,
-            email: req.body.email,
-            password: hashPass,
-            contact: req.body.contact,
-            // createdAt: new Date(),
-            // createdAt: Date.now(),
-            updatedAt: Date.now(),
-        });
-		const save = await users.save();
+        // const user = await User.findByIdAndUpdate({_id: req.params.slug}).exec();
+        const user = await User.findOneAndUpdate(
+            {_id: req.params.slug},
+            {
+                username: req.body.username,
+                email: req.body.email,
+                password: hashPass,
+                contact: req.body.contact,
+                // createdAt: new Date(),
+                // createdAt: Date.now(),
+                updatedAt: Date.now(),
+                deletedAt: null,
+                deleted: false,
+            }
+        ).exec();
+        let users = await User.findOne({_id: req.params.slug}).exec();
+        // const users = new User({
+        //     username: req.body.username,
+        //     email: req.body.email,
+        //     password: hashPass,
+        //     contact: req.body.contact,
+        //     // createdAt: new Date(),
+        //     // createdAt: Date.now(),
+        //     updatedAt: Date.now(),
+        // });
+		const save = await user.save();
         return res.status(200).json({
             'status': 'success',
             'message': 'users found',
-			data: user, users, password
+			data: users, password
         })
     } catch (error) {
         console.error('error', error.message);

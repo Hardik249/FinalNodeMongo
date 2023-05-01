@@ -36,6 +36,8 @@ exports.add = async (req, res) => {
             // createdAt: new Date(),
             createdAt: Date.now(),
             updatedAt: Date.now(),
+            deleted: false,
+            deletedAt: null
         });
         console.log('bfor sv');
 		const save = await users.save();
